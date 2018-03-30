@@ -33,7 +33,7 @@ public:
 	 */
 	StereoCamera(int resolution, double frame_rate): frame_rate_(30.0) {
 
-		camera_ = new cv::VideoCapture(1);
+		camera_ = new cv::VideoCapture("/dev/zedcam");
 		cv::Mat raw;
 		cv::Mat left_image;
 		cv::Mat right_image;
