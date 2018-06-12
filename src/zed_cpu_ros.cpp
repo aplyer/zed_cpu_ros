@@ -15,7 +15,7 @@
 
 #define WIDTH_ID 3
 #define HEIGHT_ID 4
-#define FPS_ID 5
+#define FPS_ID CV_CAP_PROP_FPS
 
 namespace arti {
 
@@ -39,7 +39,7 @@ public:
 		cv::Mat right_image;
 		setResolution(resolution);
 		// // this function doesn't work very well in current Opencv 2.4, so, just use ROS to control frame rate.
-		// setFrameRate(frame_rate);
+		setFrameRate(frame_rate);
 
 		std::cout << "Stereo Camera Set Resolution: " << camera_->get(WIDTH_ID) << "x" << camera_->get(HEIGHT_ID) << std::endl;
 		// std::cout << "Stereo Camera Set Frame Rate: " << camera_->get(FPS_ID) << std::endl;
@@ -77,6 +77,7 @@ public:
 	 * @param[in]  frame_rate  The frame rate
 	 */
 	void setFrameRate(double frame_rate) {
+		ROS_INFO("FrameRate  : %f \n", frame_rate);
 		camera_->set(FPS_ID, frame_rate);
 		frame_rate_ = camera_->get(FPS_ID);
 	}
